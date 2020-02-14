@@ -14,10 +14,6 @@ public class Empresa {
     }
 
 
-
-
-
-
     public String getNombre() {
         return nombre;
     }
