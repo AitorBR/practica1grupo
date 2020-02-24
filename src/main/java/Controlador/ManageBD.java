@@ -23,8 +23,6 @@ public class ManageBD {
 
     private Connection ConnectarBD() throws AplicacioException {
         Connection ret = null;
-
-
         try {
             ret = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + bd + "?useUnicode=true&"
                     + "useJDBCCompliantTimezoneShift=true&"
