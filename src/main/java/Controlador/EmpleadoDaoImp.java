@@ -2,6 +2,7 @@ package Controlador;
 
 
 import Model.Empleado;
+import Vista.View;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,6 +13,18 @@ import java.util.List;
 
 
 public class EmpleadoDaoImp implements EmpleadoDao {
+
+    View view = new View();
+
+    // lo hemos hecho así porque luego dependiendo del catch podemos mostrar cosas diferentes, es decir,
+    // podemos añadir texto al final indicando de que es el error, también podría haber generado una default
+    // para todos y solo cambiar el centro (es decir crear, mostrar, actualizar, eliminar)
+
+    final String errorCreate = "Error al crear al empleado";
+    final String errorRead = "Error al mostrar al empleado";
+    final String errorUpdate = "Error al actualizar al empleado";
+    final String errorDelete = "Error al eliminar al empleado";
+
 
     @Override
     public boolean registrar(Empleado empleado) {
@@ -24,9 +37,10 @@ public class EmpleadoDaoImp implements EmpleadoDao {
             registrar = true;
             statement.close();
         } catch (SQLException e) {
-            System.out.println("Error: Clase EmpleadoDaoImple, método registrar");
+            view.messageErrorDefault(errorCreate + " a causa de la base de datos");
             e.printStackTrace();
         } catch (AplicacioException e) {
+            view.messageErrorDefault(errorCreate + " a causa de los datos");
             e.printStackTrace();
         }
         return registrar;
@@ -39,7 +53,6 @@ public class EmpleadoDaoImp implements EmpleadoDao {
         List<Empleado> listaEmpleado = new ArrayList<Empleado>();
 
         try {
-
             ManageBD manageBD = new ManageBD();
             Statement statement = manageBD.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
@@ -57,9 +70,10 @@ public class EmpleadoDaoImp implements EmpleadoDao {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println("Error: Clase EmpleadoDaoImple, método obtener");
+            view.messageErrorDefault(errorRead + " a causa de la base de datos");
             e.printStackTrace();
         } catch (AplicacioException e) {
+            view.messageErrorDefault(errorRead + " a causa de los datos");
             e.printStackTrace();
         }
 
@@ -80,9 +94,10 @@ public class EmpleadoDaoImp implements EmpleadoDao {
             statement.execute(sql);
             actualizar = true;
         } catch (SQLException e) {
-            System.out.println("Error: Clase EmpleadoDaoImple, método actualizar");
+            view.messageErrorDefault(errorUpdate + " a causa de la base de datos");
             e.printStackTrace();
         } catch (AplicacioException e) {
+            view.messageErrorDefault(errorUpdate + " a causa de los datos");
             e.printStackTrace();
         }
         return actualizar;
@@ -94,7 +109,6 @@ public class EmpleadoDaoImp implements EmpleadoDao {
         boolean eliminar = false;
 
         try {
-
             ManageBD manageBD = new ManageBD();
             Statement statement = manageBD.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
@@ -103,9 +117,10 @@ public class EmpleadoDaoImp implements EmpleadoDao {
             statement.execute(sql);
             eliminar = true;
         } catch (SQLException e) {
-            System.out.println("Error: Clase EmpleadoDaoImple, método eliminar");
+            view.messageErrorDefault(errorDelete + " a causa de la base de datos");
             e.printStackTrace();
         } catch (AplicacioException e) {
+            view.messageErrorDefault(errorDelete + " a causa de los datos");
             e.printStackTrace();
         }
         return eliminar;
