@@ -8,6 +8,7 @@ public class View {
 
     private void init() {
         String asasd = "";
+        String asdasd;
     }
 
     public void messageErrorDefault(String text) {

@@ -89,7 +89,7 @@ public class PortatilDaoImp implements PortatilDao {
             ManageBD manageBD = new ManageBD();
             Statement statement = manageBD.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-            String sql = "UPDATE Portatil SET dni='" + portatil.getDni() + "', nom='" + portatil.getNom() + "', mail='" + portatil.getMail() + "', edad='" + portatil.getNom() + "'" + " WHERE dni='" + primaryKey + "'";
+            String sql = "UPDATE Portatil SET numSerie='" + portatil.getNumSerie() + "', fabricante='" + portatil.getFabricante() + "', nom='" + portatil.getNom() + "', pulgadas='" + portatil.getPulgadas() + "'" + " WHERE nom='" + primaryKey + "'";
 
             statement.execute(sql);
             actualizar = true;
@@ -112,7 +112,7 @@ public class PortatilDaoImp implements PortatilDao {
             ManageBD manageBD = new ManageBD();
             Statement statement = manageBD.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-            String sql = "DELETE FROM Portatil WHERE dni='" + primaryKey + "'";     // portatil.getDni() por dni
+            String sql = "DELETE FROM Portatil WHERE nom='" + primaryKey + "'";     // portatil.getDni() por dni
 
             statement.execute(sql);
             eliminar = true;
