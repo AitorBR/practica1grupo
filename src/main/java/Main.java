@@ -1,6 +1,7 @@
 import Controlador.EmpleadoDao;
 import Controlador.EmpleadoDaoImp;
 import Model.Empleado;
+import Vista.View;
 
 public class Main {
 
@@ -27,6 +28,10 @@ public class Main {
 
         System.out.println("hola");
         System.out.println("Adios");
+
+
+        new View();
+
     }
 
 
