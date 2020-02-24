@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Csv {
-    public static void exportaEmpleadoCSV(File file, Empresa empresa) throws DadesException {
+    public static void exportaEmpleadoCSV(File file, Empresa empresa) throws DadesException {   // solamente este es necesario según la practica pero hemos hecho los 2 ya que estábamos
         String row = "";
         String separador = ",";
         FileWriter fileWriter;
