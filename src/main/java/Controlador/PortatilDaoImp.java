@@ -81,7 +81,7 @@ public class PortatilDaoImp implements PortatilDao {
     }
 
     @Override
-    public boolean actualizar(Portatil portatil) {
+    public boolean actualizar(Portatil portatil, String primaryKey) {
 
         boolean actualizar = false;
 
@@ -89,7 +89,7 @@ public class PortatilDaoImp implements PortatilDao {
             ManageBD manageBD = new ManageBD();
             Statement statement = manageBD.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-            String sql = "UPDATE Portatil SET dni='" + portatil.getDni() + "', nom='" + portatil.getNom() + "', mail='" + portatil.getMail() + "', edad='" + portatil.getNom() + "'" + " WHERE dni='" + portatil.getDni() + "'";
+            String sql = "UPDATE Portatil SET dni='" + portatil.getDni() + "', nom='" + portatil.getNom() + "', mail='" + portatil.getMail() + "', edad='" + portatil.getNom() + "'" + " WHERE dni='" + primaryKey + "'";
 
             statement.execute(sql);
             actualizar = true;
