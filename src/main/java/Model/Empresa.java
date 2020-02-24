@@ -1,11 +1,14 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Empresa {
 
     String nombre;
     String nif; // clau
     int tel;
     String mail;
+    private ArrayList<Empleado> empleados = new ArrayList<Empleado>();
 
     public Empresa() {
     }
@@ -48,5 +51,13 @@ public class Empresa {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public ArrayList<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(ArrayList<Empleado> empleados) {
+        this.empleados = empleados;
     }
 }

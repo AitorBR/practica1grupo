@@ -1,11 +1,15 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Empleado {
 
     String dni; //clau
     String nom;
     String mail;
     int edad;
+    private ArrayList<Portatil> portatils = new ArrayList<Portatil>();
+
 
     public Empleado() {
     }
@@ -49,4 +53,24 @@ public class Empleado {
     public void setEdad(int edad) {
         this.edad = edad;
     }
+
+    public ArrayList<Portatil> getPortatils() {
+        return portatils;
+    }
+
+    public void setPortatils(ArrayList<Portatil> portatils) {
+        this.portatils = portatils;
+    }
+
+    public String toStringCSV(String separador) {
+        String row = "";
+
+        row += getDni() + separador;
+        row += getNom() + separador;
+        row += getMail() + separador;
+        row += getEdad() + separador;
+
+        return row;
+    }
+
 }

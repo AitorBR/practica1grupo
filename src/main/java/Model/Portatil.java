@@ -48,4 +48,16 @@ public class Portatil {
     public void setPulgadas(float pulgadas) {
         this.pulgadas = pulgadas;
     }
+
+    public String toStringCSV(String separador){
+        String row = "";
+
+        row += this.getNumSerie() + separador;
+        row += this.getFabricante() + separador;
+        row += this.getNom() + separador;
+        row += this.getPulgadas() + separador;
+
+        return row;
+    }
+
 }

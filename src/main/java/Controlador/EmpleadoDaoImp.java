@@ -89,7 +89,7 @@ public class EmpleadoDaoImp implements EmpleadoDao {
             ManageBD manageBD = new ManageBD();
             Statement statement = manageBD.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-            String sql = "UPDATE Empleado SET dni='" + empleado.getDni() + "', nom='" + empleado.getNom() + "', mail='" + empleado.getMail() + "', edad='" + empleado.getNom() + "'" + " WHERE dni='" + empleado.getDni() + "'";
+            String sql = "UPDATE Empleado SET dni='" + empleado.getDni() + "', nom='" + empleado.getNom() + "', mail='" + empleado.getMail() + "', edad='" + empleado.getNom() + "'" + " WHERE dni='" + primarykey + "'";
 
             statement.execute(sql);
             actualizar = true;
