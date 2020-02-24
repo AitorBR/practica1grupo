@@ -10,6 +10,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Dto dto = new Dto();
+
         // A empresa
         // B trabajador
         // C portatil
@@ -57,6 +59,9 @@ public class Main {
 
 
         new View();
+
+
+        dto.getEmpleadoDao().mostrar();
 
     }
 
