@@ -7,6 +7,8 @@ public class Empresa {
     int tel;
     String mail;
 
+    public Empresa() {
+    }
 
     public Empresa(String nombre, String nif, int tel, String mail) {
         this.nombre = nombre;

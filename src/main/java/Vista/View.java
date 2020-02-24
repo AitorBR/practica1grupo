@@ -21,7 +21,6 @@ public class View {
                 Empleado();
                 break;
             case 2:
-
                 Empresa();
                 break;
             case 3:
@@ -31,6 +30,15 @@ public class View {
                 System.out.println("Numero Erronio");
 
         }
+    }
+
+    private static void Empresa() {
+    }
+
+    private static void Portatil() {
+    }
+
+    private static void Empleado() {
     }
 
     public void messageErrorDefault(String text) {
