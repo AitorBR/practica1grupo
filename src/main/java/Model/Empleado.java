@@ -7,6 +7,9 @@ public class Empleado {
     String mail;
     int edad;
 
+    public Empleado() {
+    }
+
     public Empleado(String dni, String nom, String mail, int edad) {
         this.dni = dni;
         this.nom = nom;

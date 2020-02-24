@@ -6,13 +6,12 @@
 package Controlador;
 
 /**
- *
  * @author manel
  */
-public class AplicacioException extends Exception{
+public class AplicacioException extends Exception {
 
     public AplicacioException(String message) {
         super(message);
     }
-    
+
 }

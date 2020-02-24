@@ -6,13 +6,12 @@
 package Model;
 
 /**
- *
  * @author manel
  */
-public class DadesException extends Exception{
+public class DadesException extends Exception {
 
     public DadesException(String message) {
         super(message);
     }
-    
+
 }
