@@ -1,35 +1,35 @@
 package Controlador;
 
-
-import Model.Empleado;
+import Model.Portatil;
 import Vista.View;
 
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class EmpleadoDaoImp implements EmpleadoDao {
-
+public class PortatilDaoImp implements PortatilDao {
     View view = new View();
 
     // lo hemos hecho así porque luego dependiendo del catch podemos mostrar cosas diferentes, es decir,
     // podemos añadir texto al final indicando de que es el error, también podría haber generado una default
     // para todos y solo cambiar el centro (es decir crear, mostrar, actualizar, eliminar)
 
-    final String errorCreate = "Error al crear al empleado";
-    final String errorRead = "Error al mostrar al empleado";
-    final String errorUpdate = "Error al actualizar al empleado";
-    final String errorDelete = "Error al eliminar al empleado";
+    final String errorCreate = "Error al crear al portatil";
+    final String errorRead = "Error al mostrar al portatil";
+    final String errorUpdate = "Error al actualizar al portatil";
+    final String errorDelete = "Error al eliminar al portatil";
 
 
     @Override
-    public boolean crear(Empleado empleado) {
+    public boolean crear(Portatil portatil) {
         boolean registrar = false;
         try {
             ManageBD manageBD = new ManageBD();
             Statement statement = manageBD.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "INSERT INTO Empleado values ('" + empleado.getDni() + "','" + empleado.getNom() + "','" + empleado.getMail() + "','" + empleado.getEdad() + "')";
+            String sql = "INSERT INTO Portatil values ('" + portatil.getNumSerie() + "','" + portatil.getFabricante() + "','" + portatil.getNom() + "','" + portatil.getPulgadas() + "')";
             statement.execute(sql);
             registrar = true;
             statement.close();
@@ -45,29 +45,29 @@ public class EmpleadoDaoImp implements EmpleadoDao {
 
 
     @Override
-    public List<Empleado> mostrar() {
+    public List<Portatil> mostrar() {
 
-        List<Empleado> listaEmpleado = new ArrayList<Empleado>();
+        List<Portatil> listaPortatil = new ArrayList<Portatil>();
 
         try {
             ManageBD manageBD = new ManageBD();
             Statement statement = manageBD.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-            String sql = "SELECT * FROM Empleado ORDER BY dni";
+            String sql = "SELECT * FROM Portatil ORDER BY nom";
 
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                Empleado c = new Empleado();
-                c.setDni(resultSet.getString(1));
-                c.setNom(resultSet.getString(2));
-                c.setMail(resultSet.getString(3));
-                c.setEdad(resultSet.getInt(4));
-                listaEmpleado.add(c);
+                Portatil c = new Portatil();
+                c.setNumSerie(resultSet.getString(1));
+                c.setFabricante(resultSet.getString(2));
+                c.setNom(resultSet.getString(3));
+                c.setPulgadas(resultSet.getInt(4));
+                listaPortatil.add(c);
             }
             statement.close();
             resultSet.close();
         } catch (SQLIntegrityConstraintViolationException e) {
-            view.messageErrorDefault("El usuario ya existe");
+            view.messageErrorDefault("El portatil ya existe");
             e.printStackTrace();
         } catch (SQLException e) {
             view.messageErrorDefault(errorRead + " a causa de la base de datos");
@@ -77,11 +77,11 @@ public class EmpleadoDaoImp implements EmpleadoDao {
             e.printStackTrace();
         }
 
-        return listaEmpleado;
+        return listaPortatil;
     }
 
     @Override
-    public boolean actualizar(Empleado empleado, String primarykey) {
+    public boolean actualizar(Portatil portatil) {
 
         boolean actualizar = false;
 
@@ -89,7 +89,7 @@ public class EmpleadoDaoImp implements EmpleadoDao {
             ManageBD manageBD = new ManageBD();
             Statement statement = manageBD.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-            String sql = "UPDATE Empleado SET dni='" + empleado.getDni() + "', nom='" + empleado.getNom() + "', mail='" + empleado.getMail() + "', edad='" + empleado.getNom() + "'" + " WHERE dni='" + empleado.getDni() + "'";
+            String sql = "UPDATE Portatil SET dni='" + portatil.getDni() + "', nom='" + portatil.getNom() + "', mail='" + portatil.getMail() + "', edad='" + portatil.getNom() + "'" + " WHERE dni='" + portatil.getDni() + "'";
 
             statement.execute(sql);
             actualizar = true;
@@ -112,7 +112,7 @@ public class EmpleadoDaoImp implements EmpleadoDao {
             ManageBD manageBD = new ManageBD();
             Statement statement = manageBD.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-            String sql = "DELETE FROM Empleado WHERE dni='" + primaryKey + "'";     // empleado.getDni() por dni
+            String sql = "DELETE FROM Portatil WHERE dni='" + primaryKey + "'";     // portatil.getDni() por dni
 
             statement.execute(sql);
             eliminar = true;
@@ -127,5 +127,5 @@ public class EmpleadoDaoImp implements EmpleadoDao {
     }
 
 }
-    
+
 

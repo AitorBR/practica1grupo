@@ -7,8 +7,8 @@ public class Portatil {
     String nom; // modelo
     float pulgadas;
 
-
-    // dto exportacio dtv
+    public Portatil() {
+    }
 
     public Portatil(String numSerie, String fabricante, String nom, float pulgadas) {
         this.numSerie = numSerie;

@@ -19,7 +19,7 @@ public class Main {
 
         empleadoDao.crear(empleado);
         empleadoDao.mostrar();
-        empleadoDao.actualizar(empleado2);
+        empleadoDao.actualizar(empleado2, "1");
         empleadoDao.mostrar();
         empleadoDao.eliminar("1");
         empleadoDao.eliminar("2");
