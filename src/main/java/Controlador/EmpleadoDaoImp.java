@@ -4,10 +4,7 @@ package Controlador;
 import Model.Empleado;
 import Vista.View;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,14 +23,13 @@ public class EmpleadoDaoImp implements EmpleadoDao {
     final String errorDelete = "Error al eliminar al empleado";
 
 
-
     @Override
     public boolean crear(Empleado empleado) {
         boolean registrar = false;
         try {
             ManageBD manageBD = new ManageBD();
             Statement statement = manageBD.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "INSERT INTO Empleado values (NULL,'" + empleado.getDni() + "','" + empleado.getNom() + "','" + empleado.getMail() + "','" + empleado.getEdad() + "')";
+            String sql = "INSERT INTO Empleado values ('" + empleado.getDni() + "','" + empleado.getNom() + "','" + empleado.getMail() + "','" + empleado.getEdad() + "')";
             statement.execute(sql);
             registrar = true;
             statement.close();
@@ -70,6 +66,10 @@ public class EmpleadoDaoImp implements EmpleadoDao {
             }
             statement.close();
             resultSet.close();
+        } catch (SQLIntegrityConstraintViolationException e) {
+            view.messageErrorDefault("El usuario ya existe");
+            e.printStackTrace();
+
         } catch (SQLException e) {
             view.messageErrorDefault(errorRead + " a causa de la base de datos");
             e.printStackTrace();
@@ -90,7 +90,7 @@ public class EmpleadoDaoImp implements EmpleadoDao {
             ManageBD manageBD = new ManageBD();
             Statement statement = manageBD.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-            String sql = "UPDATE Empleado SET dni='" + empleado.getDni() + "', nom='" + empleado.getNom() + "', mail='" + empleado.getMail() + "', edat='" + empleado.getNom() + "'" + " WHERE dni=" + empleado.getDni();
+            String sql = "UPDATE Empleado SET dni='" + empleado.getDni() + "', nom='" + empleado.getNom() + "', mail='" + empleado.getMail() + "', edad='" + empleado.getNom() + "'" + " WHERE dni='" + empleado.getDni() + "'";
 
             statement.execute(sql);
             actualizar = true;
@@ -105,7 +105,7 @@ public class EmpleadoDaoImp implements EmpleadoDao {
     }
 
     @Override
-    public boolean eliminar(Empleado empleado) {
+    public boolean eliminar(Empleado empleado) {        // mandar solo dni  String dni
 
         boolean eliminar = false;
 
@@ -113,7 +113,7 @@ public class EmpleadoDaoImp implements EmpleadoDao {
             ManageBD manageBD = new ManageBD();
             Statement statement = manageBD.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-            String sql = "DELETE FROM Empleado WHERE dni=" + empleado.getDni();
+            String sql = "DELETE FROM Empleado WHERE dni=" + empleado.getDni();     // empleado.getDni() por dni
 
             statement.execute(sql);
             eliminar = true;
