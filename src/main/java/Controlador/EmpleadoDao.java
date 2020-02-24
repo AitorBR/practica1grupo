@@ -6,7 +6,7 @@ public interface EmpleadoDao {
     public boolean crear(Empleado empleado);
     public List<Empleado> mostrar();
     public boolean actualizar(Empleado empleado);
-    public boolean eliminar(Empleado empleado);
+    public boolean eliminar(String primaryKey);
 }
 
 

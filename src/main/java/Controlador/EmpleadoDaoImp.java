@@ -104,7 +104,7 @@ public class EmpleadoDaoImp implements EmpleadoDao {
     }
 
     @Override
-    public boolean eliminar(Empleado empleado) {        // mandar solo dni  String dni
+    public boolean eliminar(String primaryKey) {        // mandar solo dni  String dni
 
         boolean eliminar = false;
 
@@ -112,7 +112,7 @@ public class EmpleadoDaoImp implements EmpleadoDao {
             ManageBD manageBD = new ManageBD();
             Statement statement = manageBD.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-            String sql = "DELETE FROM Empleado WHERE dni='" + empleado.getDni() + "'";     // empleado.getDni() por dni
+            String sql = "DELETE FROM Empleado WHERE dni='" + primaryKey + "'";     // empleado.getDni() por dni
 
             statement.execute(sql);
             eliminar = true;

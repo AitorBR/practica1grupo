@@ -12,8 +12,8 @@ public class Main {
         // B trabajador
         // C portatil
 
-        Empleado empleado = new Empleado("sadasdasd", "asdasd", "masdasdasd", 15);
-        Empleado empleado2 = new Empleado("sadasdasdasdas", "asdasdasdasd", "masdasdasdasdas", 17);
+        Empleado empleado = new Empleado("1", "asdasd", "masdasdasd", 15);
+        Empleado empleado2 = new Empleado("2", "asdasdasdasd", "masdasdasdasdas", 17);
 
         EmpleadoDao empleadoDao = new EmpleadoDaoImp();
 
@@ -21,8 +21,8 @@ public class Main {
         empleadoDao.mostrar();
         empleadoDao.actualizar(empleado2);
         empleadoDao.mostrar();
-        empleadoDao.eliminar(empleado2);
-        empleadoDao.eliminar(empleado);
+        empleadoDao.eliminar("1");
+        empleadoDao.eliminar("2");
         empleadoDao.mostrar();
 
         System.out.println("hola");
