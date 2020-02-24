@@ -25,9 +25,6 @@ public class Main {
         empleadoDao.eliminar(empleado);
         empleadoDao.mostrar();
 
-
-
-
         System.out.println("hola");
         System.out.println("Adios");
     }
