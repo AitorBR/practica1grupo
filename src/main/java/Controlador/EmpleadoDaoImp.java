@@ -69,7 +69,6 @@ public class EmpleadoDaoImp implements EmpleadoDao {
         } catch (SQLIntegrityConstraintViolationException e) {
             view.messageErrorDefault("El usuario ya existe");
             e.printStackTrace();
-
         } catch (SQLException e) {
             view.messageErrorDefault(errorRead + " a causa de la base de datos");
             e.printStackTrace();
@@ -113,7 +112,7 @@ public class EmpleadoDaoImp implements EmpleadoDao {
             ManageBD manageBD = new ManageBD();
             Statement statement = manageBD.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-            String sql = "DELETE FROM Empleado WHERE dni=" + empleado.getDni();     // empleado.getDni() por dni
+            String sql = "DELETE FROM Empleado WHERE dni='" + empleado.getDni() + "'";     // empleado.getDni() por dni
 
             statement.execute(sql);
             eliminar = true;
