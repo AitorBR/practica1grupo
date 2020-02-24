@@ -21,12 +21,6 @@ public class ManageBD {
     }
 
 
-    /**
-     * Connecta a una BD mysql i gestiona la connexió
-     *
-     * @return objecte Connection
-     * @throws SQLException
-     */
     private Connection ConnectarBD() throws AplicacioException {
         Connection ret = null;
 
