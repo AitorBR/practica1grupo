@@ -26,8 +26,9 @@ public class EmpleadoDaoImp implements EmpleadoDao {
     final String errorDelete = "Error al eliminar al empleado";
 
 
+
     @Override
-    public boolean registrar(Empleado empleado) {
+    public boolean crear(Empleado empleado) {
         boolean registrar = false;
         try {
             ManageBD manageBD = new ManageBD();
@@ -48,7 +49,7 @@ public class EmpleadoDaoImp implements EmpleadoDao {
 
 
     @Override
-    public List<Empleado> obtener() {
+    public List<Empleado> mostrar() {
 
         List<Empleado> listaEmpleado = new ArrayList<Empleado>();
 

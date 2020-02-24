@@ -3,8 +3,8 @@ import Model.Empleado;
 import java.util.List;
 
 public interface EmpleadoDao {
-    public boolean registrar(Empleado empleado);
-    public List<Empleado> obtener();
+    public boolean crear(Empleado empleado);
+    public List<Empleado> mostrar();
     public boolean actualizar(Empleado empleado);
     public boolean eliminar(Empleado empleado);
 }
