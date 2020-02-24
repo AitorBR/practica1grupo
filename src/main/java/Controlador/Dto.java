@@ -13,8 +13,27 @@ public class Dto {
     }
 
 
+    public EmpleadoDao getEmpleadoDao() {
+        return empleadoDao;
+    }
 
+    public void setEmpleadoDao(EmpleadoDao empleadoDao) {
+        this.empleadoDao = empleadoDao;
+    }
 
+    public EmpresaDao getEmpresaDao() {
+        return empresaDao;
+    }
 
+    public void setEmpresaDao(EmpresaDao empresaDao) {
+        this.empresaDao = empresaDao;
+    }
 
+    public PortatilDao getPortatilDao() {
+        return portatilDao;
+    }
+
+    public void setPortatilDao(PortatilDao portatilDao) {
+        this.portatilDao = portatilDao;
+    }
 }
