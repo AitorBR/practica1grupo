@@ -90,19 +90,22 @@ public class EmpleadoDaoImp implements EmpleadoDao {
 
     @Override
     public boolean eliminar(Empleado empleado) {
-        Connection connect = null;
-        Statement statement = null;
 
         boolean eliminar = false;
 
-        String sql = "DELETE FROM Empleado WHERE dni=" + empleado.getDni();
         try {
-            connect = Conexion.conectar();
-            statement = connect.createStatement();
+
+            ManageBD manageBD = new ManageBD();
+            Statement statement = manageBD.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+            String sql = "DELETE FROM Empleado WHERE dni=" + empleado.getDni();
+
             statement.execute(sql);
             eliminar = true;
         } catch (SQLException e) {
             System.out.println("Error: Clase EmpleadoDaoImple, método eliminar");
+            e.printStackTrace();
+        } catch (AplicacioException e) {
             e.printStackTrace();
         }
         return eliminar;
